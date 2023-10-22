@@ -22,10 +22,9 @@ public class Switch : MonoBehaviour {
     }
 
     // Methods
-    void OnTriggerEnter(Collider other) {
-        Player player = other.GetComponent<Player>();
-        if (player != null && !isLowered)
-        {
+    void OnTriggerEnter(Collider collider) {
+        Player player = collider.GetComponent<Player>();
+        if (player != null && !isLowered) {
             transform.Translate(Vector3.down * LowerAmount);
             isLowered = true;
             activatable.Activate();

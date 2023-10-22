@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Door : MonoBehaviour, IActivatable {
+
+    // Methods
     public void Activate() {
         gameObject.SetActive(false);
     }
