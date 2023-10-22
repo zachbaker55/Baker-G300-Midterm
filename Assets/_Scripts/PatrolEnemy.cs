@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PatrolEnemy : MonoBehaviour {
+public class PatrolEnemy : MonoBehaviour, IEnemy {
     // Properties
     [SerializeField] private Player _player;
     [SerializeField] private float _damageDistance;
