@@ -13,7 +13,7 @@ public class GameManager : PersistentSingleton<GameManager> {
     public float CoinAmount {
         get { return _coinAmount; }
         set { _coinAmount = value; 
-        _coinText.text = "Coins: " + _coinAmount; }
+        _coinText.text = "Score: " + _coinAmount; }
     }
 
     [SerializeField] private float _ammoAmount;
