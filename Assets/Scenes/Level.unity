@@ -15140,6 +15140,7 @@ MonoBehaviour:
   _runSpeed: 8
   _jumpHeight: 0.3
   _jumpTime: 0.5
+  _player: {fileID: 5778295372436024965}
   _bulletPrefab: {fileID: 4517808595662171830, guid: 2280aa81ac832264b82b3e7967cc13cf, type: 3}
   _bulletSpawn: {fileID: 8098727137734202580}
 --- !u!114 &5778295372436024965
@@ -15155,6 +15156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammoAmount: 3
+  _bulletSpeed: 10
+  _maxBulletCount: 3
 --- !u!33 &5804300892449656426
 MeshFilter:
   m_ObjectHideFlags: 0
