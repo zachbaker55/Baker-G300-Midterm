@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 3849641345129496274}
   - component: {fileID: 2204179281012123286}
   - component: {fileID: 7554760531122359997}
+  - component: {fileID: 9381965879264152}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -153,3 +154,15 @@ MonoBehaviour:
   _bobHeight: 0.4
   _bobSpeed: 2
   _rotationSpeed: 100
+--- !u!114 &9381965879264152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8496683162880120354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc147fc8eddd1c243af1a89642ae62e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

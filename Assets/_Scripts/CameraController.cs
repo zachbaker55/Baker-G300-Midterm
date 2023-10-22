@@ -119,7 +119,6 @@ public class CameraController : MonoBehaviour {
         if (Cursor.lockState != CursorLockMode.Locked) {
             return;
         }
-        Debug.Log(_zoom);
 
         Vector3 _focusPosition = _followTransform.position + _camera.transform.TransformDirection(_framing);
 
