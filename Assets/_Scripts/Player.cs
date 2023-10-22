@@ -23,7 +23,6 @@ public class Player : MonoBehaviour {
     [SerializeField] private int _maxBulletCount;
     public int MaxBulletCount {
         get { return _maxBulletCount; }
-        set { _maxBulletCount = value; }
     }
     private int _bulletCount = 0;
     public int BulletCount {
