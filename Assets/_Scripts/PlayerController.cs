@@ -30,7 +30,9 @@ public class PlayerController : MonoBehaviour {
         get { return _jumpTime; }
         set { _jumpTime = value; }
     }
+    
 
+    [SerializeField] private Player _player;
     [SerializeField] private GameObject _bulletPrefab;
 
     [SerializeField] private Transform _bulletSpawn;
@@ -106,16 +108,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void OnShoot(Context c) {
-
-        GameObject newBullet = Instantiate(_bulletPrefab, _bulletSpawn.position, new Quaternion());
-        // Bullet bullet = shot.GetComponent<Bullet>();
-        // bullet.Init(_shotSpeed, _shotDamage, _faction);
-
-        //GameObject newBullet = Instantiate(_bulletPrefab, _bulletSpawn);
-        Rigidbody rb = newBullet.GetComponent<Rigidbody>();
-        if (rb != null) {
-            rb.velocity = transform.forward * 1;
+        if (_player.BulletCount >= _player.MaxBulletCount || _player.AmmoAmount <= 0) {
+            return;
         }
+        GameObject newBullet = Instantiate(_bulletPrefab, _bulletSpawn.position, new Quaternion());
+        Bullet bullet = newBullet.GetComponent<Bullet>();
+        _player.BulletCount++;
+        _player.AmmoAmount--;
+        bullet.Init(_player, 1);
     }
 
     private void DoMovement() {
