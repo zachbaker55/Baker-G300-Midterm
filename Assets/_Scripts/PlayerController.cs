@@ -31,6 +31,9 @@ public class PlayerController : MonoBehaviour {
         set { _jumpTime = value; }
     }
 
+    [SerializeField] private GameObject _bulletPrefab;
+
+    [SerializeField] private Transform _bulletSpawn;
 
 
     // Fields
@@ -63,7 +66,9 @@ public class PlayerController : MonoBehaviour {
         playerInput.CharacterControls.Run.canceled += OnRun;
 
         playerInput.CharacterControls.Jump.started += OnJump;
-        playerInput.CharacterControls.Jump.canceled += OnJump;        
+        playerInput.CharacterControls.Jump.canceled += OnJump;  
+
+        playerInput.CharacterControls.Shoot.started += OnShoot;   
     }
 
     private void Start() {
@@ -98,6 +103,19 @@ public class PlayerController : MonoBehaviour {
 
     private void OnJump(Context c) {
         isJumpPressed = c.ReadValueAsButton();
+    }
+
+    private void OnShoot(Context c) {
+
+        GameObject newBullet = Instantiate(_bulletPrefab, _bulletSpawn.position, new Quaternion());
+        // Bullet bullet = shot.GetComponent<Bullet>();
+        // bullet.Init(_shotSpeed, _shotDamage, _faction);
+
+        //GameObject newBullet = Instantiate(_bulletPrefab, _bulletSpawn);
+        Rigidbody rb = newBullet.GetComponent<Rigidbody>();
+        if (rb != null) {
+            rb.velocity = transform.forward * 1;
+        }
     }
 
     private void DoMovement() {
