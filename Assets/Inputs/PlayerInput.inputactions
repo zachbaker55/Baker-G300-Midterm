@@ -10,7 +10,7 @@
                     "type": "Value",
                     "id": "0f550e99-8a44-4a8f-9b1e-7e7721b361f2",
                     "expectedControlType": "Vector2",
-                    "processors": "NormalizeVector2",
+                    "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -18,6 +18,15 @@
                     "name": "Run",
                     "type": "Button",
                     "id": "d12676b9-ef46-443f-9e13-c3c1dfab8167",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "82bef394-9ee7-477b-ba5b-35205535bfe9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -99,6 +108,85 @@
                     "processors": "",
                     "groups": "",
                     "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3f1fcd0b-70f5-41fd-964a-f04cfbe399d2",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "CameraControls",
+            "id": "2d7a0797-2a84-4544-a602-621326ea947b",
+            "actions": [
+                {
+                    "name": "MouseXInput",
+                    "type": "Value",
+                    "id": "09703465-319a-4a23-93bb-a5522e154991",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "MouseYInput",
+                    "type": "Value",
+                    "id": "cbee908f-c012-426b-be9b-bdd8896aebe6",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "MouseScrollInput",
+                    "type": "Value",
+                    "id": "069be97b-47bc-42e9-af40-5f26c880228a",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3f7406b2-2585-43bf-ab58-da914c33dc74",
+                    "path": "<Mouse>/delta/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseXInput",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "119b5d9d-95b1-4426-9eb2-6dc90a94f2fb",
+                    "path": "<Mouse>/delta/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseYInput",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "edc05a5d-998a-4cf9-9280-0b0faa32e6c9",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseScrollInput",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

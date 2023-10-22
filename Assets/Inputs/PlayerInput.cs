@@ -32,7 +32,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""0f550e99-8a44-4a8f-9b1e-7e7721b361f2"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": ""NormalizeVector2"",
+                    ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
@@ -40,6 +40,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": ""Run"",
                     ""type"": ""Button"",
                     ""id"": ""d12676b9-ef46-443f-9e13-c3c1dfab8167"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""82bef394-9ee7-477b-ba5b-35205535bfe9"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -123,6 +132,85 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f1fcd0b-70f5-41fd-964a-f04cfbe399d2"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""CameraControls"",
+            ""id"": ""2d7a0797-2a84-4544-a602-621326ea947b"",
+            ""actions"": [
+                {
+                    ""name"": ""MouseXInput"",
+                    ""type"": ""Value"",
+                    ""id"": ""09703465-319a-4a23-93bb-a5522e154991"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MouseYInput"",
+                    ""type"": ""Value"",
+                    ""id"": ""cbee908f-c012-426b-be9b-bdd8896aebe6"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MouseScrollInput"",
+                    ""type"": ""Value"",
+                    ""id"": ""069be97b-47bc-42e9-af40-5f26c880228a"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""3f7406b2-2585-43bf-ab58-da914c33dc74"",
+                    ""path"": ""<Mouse>/delta/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseXInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""119b5d9d-95b1-4426-9eb2-6dc90a94f2fb"",
+                    ""path"": ""<Mouse>/delta/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseYInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""edc05a5d-998a-4cf9-9280-0b0faa32e6c9"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseScrollInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -133,6 +221,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_CharacterControls = asset.FindActionMap("CharacterControls", throwIfNotFound: true);
         m_CharacterControls_Move = m_CharacterControls.FindAction("Move", throwIfNotFound: true);
         m_CharacterControls_Run = m_CharacterControls.FindAction("Run", throwIfNotFound: true);
+        m_CharacterControls_Jump = m_CharacterControls.FindAction("Jump", throwIfNotFound: true);
+        // CameraControls
+        m_CameraControls = asset.FindActionMap("CameraControls", throwIfNotFound: true);
+        m_CameraControls_MouseXInput = m_CameraControls.FindAction("MouseXInput", throwIfNotFound: true);
+        m_CameraControls_MouseYInput = m_CameraControls.FindAction("MouseYInput", throwIfNotFound: true);
+        m_CameraControls_MouseScrollInput = m_CameraControls.FindAction("MouseScrollInput", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -196,12 +290,14 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private List<ICharacterControlsActions> m_CharacterControlsActionsCallbackInterfaces = new List<ICharacterControlsActions>();
     private readonly InputAction m_CharacterControls_Move;
     private readonly InputAction m_CharacterControls_Run;
+    private readonly InputAction m_CharacterControls_Jump;
     public struct CharacterControlsActions
     {
         private @PlayerInput m_Wrapper;
         public CharacterControlsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_CharacterControls_Move;
         public InputAction @Run => m_Wrapper.m_CharacterControls_Run;
+        public InputAction @Jump => m_Wrapper.m_CharacterControls_Jump;
         public InputActionMap Get() { return m_Wrapper.m_CharacterControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -217,6 +313,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Run.started += instance.OnRun;
             @Run.performed += instance.OnRun;
             @Run.canceled += instance.OnRun;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
         }
 
         private void UnregisterCallbacks(ICharacterControlsActions instance)
@@ -227,6 +326,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Run.started -= instance.OnRun;
             @Run.performed -= instance.OnRun;
             @Run.canceled -= instance.OnRun;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
         }
 
         public void RemoveCallbacks(ICharacterControlsActions instance)
@@ -244,9 +346,78 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public CharacterControlsActions @CharacterControls => new CharacterControlsActions(this);
+
+    // CameraControls
+    private readonly InputActionMap m_CameraControls;
+    private List<ICameraControlsActions> m_CameraControlsActionsCallbackInterfaces = new List<ICameraControlsActions>();
+    private readonly InputAction m_CameraControls_MouseXInput;
+    private readonly InputAction m_CameraControls_MouseYInput;
+    private readonly InputAction m_CameraControls_MouseScrollInput;
+    public struct CameraControlsActions
+    {
+        private @PlayerInput m_Wrapper;
+        public CameraControlsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MouseXInput => m_Wrapper.m_CameraControls_MouseXInput;
+        public InputAction @MouseYInput => m_Wrapper.m_CameraControls_MouseYInput;
+        public InputAction @MouseScrollInput => m_Wrapper.m_CameraControls_MouseScrollInput;
+        public InputActionMap Get() { return m_Wrapper.m_CameraControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CameraControlsActions set) { return set.Get(); }
+        public void AddCallbacks(ICameraControlsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CameraControlsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CameraControlsActionsCallbackInterfaces.Add(instance);
+            @MouseXInput.started += instance.OnMouseXInput;
+            @MouseXInput.performed += instance.OnMouseXInput;
+            @MouseXInput.canceled += instance.OnMouseXInput;
+            @MouseYInput.started += instance.OnMouseYInput;
+            @MouseYInput.performed += instance.OnMouseYInput;
+            @MouseYInput.canceled += instance.OnMouseYInput;
+            @MouseScrollInput.started += instance.OnMouseScrollInput;
+            @MouseScrollInput.performed += instance.OnMouseScrollInput;
+            @MouseScrollInput.canceled += instance.OnMouseScrollInput;
+        }
+
+        private void UnregisterCallbacks(ICameraControlsActions instance)
+        {
+            @MouseXInput.started -= instance.OnMouseXInput;
+            @MouseXInput.performed -= instance.OnMouseXInput;
+            @MouseXInput.canceled -= instance.OnMouseXInput;
+            @MouseYInput.started -= instance.OnMouseYInput;
+            @MouseYInput.performed -= instance.OnMouseYInput;
+            @MouseYInput.canceled -= instance.OnMouseYInput;
+            @MouseScrollInput.started -= instance.OnMouseScrollInput;
+            @MouseScrollInput.performed -= instance.OnMouseScrollInput;
+            @MouseScrollInput.canceled -= instance.OnMouseScrollInput;
+        }
+
+        public void RemoveCallbacks(ICameraControlsActions instance)
+        {
+            if (m_Wrapper.m_CameraControlsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ICameraControlsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CameraControlsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CameraControlsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public CameraControlsActions @CameraControls => new CameraControlsActions(this);
     public interface ICharacterControlsActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+    }
+    public interface ICameraControlsActions
+    {
+        void OnMouseXInput(InputAction.CallbackContext context);
+        void OnMouseYInput(InputAction.CallbackContext context);
+        void OnMouseScrollInput(InputAction.CallbackContext context);
     }
 }
