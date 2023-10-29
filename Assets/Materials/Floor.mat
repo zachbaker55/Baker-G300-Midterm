@@ -94,9 +94,9 @@ Material:
     - _DstBlend: 0
     - _EmissionScaleUI: 0
     - _Gloss: 0.5
-    - _Glossiness: 0.48
+    - _Glossiness: 0.218
     - _Lightmapping: 1
-    - _Metallic: 0
+    - _Metallic: 0.341
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
