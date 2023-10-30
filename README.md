@@ -14,3 +14,10 @@ Midterm Unity project for G300
 * A switch that opens a door
 * When an enemy touches the player, the level is automatically reset
 * A boulder trap that resets the player if it touches the player
+
+# 10/29/23 Additions
+* (Lights already added in the form of torches.)
+* Textures from https://opengameart.org/textures/all | walls, floors, stairs, and roof given textures
+* Models and character textures from https://kenney.nl/assets/blocky-characters
+
+In terms of theme, I was thinking something along the lines of a test chamber. I made the patrolling enemy a guard and the chasing enemies robots. I imagine the guard has locked the player into the test chamber with the robots, and the player needs to destroy the robots and escape the guard to succeed. The textures are metallic to fit into that theme.
